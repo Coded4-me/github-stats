@@ -13,7 +13,6 @@ export const runtime = 'edge';
 
 export async function POST(request: NextRequest) {
   try {
-    // 1. Rate limiting
     const clientIP = request.headers.get('x-forwarded-for') || 
                      request.headers.get('x-real-ip') || 
                      'unknown';
@@ -36,22 +35,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Cache Strategy
-    // On ne cache que les DONNÉES brutes (le JSON de GitHub).
-    // Le SVG, lui, est regénéré à chaque fois car il dépend du thème (rapide et gratuit).
     const includeLanguages = config.stats?.includes('langs') ?? true;
     const cacheKey = `preview-data:${user}:${includeLanguages}`;
     
     let githubData: any = null;
 
-    // TENTATIVE DE LECTURE DU CACHE
     const cachedJson = await getCachedData(cacheKey);
 
     if (cachedJson) {
-      // HIT: On a trouvé les données, on évite l'appel API GitHub
       githubData = JSON.parse(cachedJson);
     } else {
-      // MISS: On doit appeler GitHub (c'est là que le log "Fetching..." apparaîtra 1 seule fois)
       githubData = await fetchGitHubStats(user, {
         includeLanguages: includeLanguages,
         languageCount: config.customization?.langsCount ?? 5
@@ -64,11 +57,9 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // On sauvegarde pour la prochaine fois (TTL 30 min)
       await setCachedData(cacheKey, JSON.stringify(githubData), 1800);
     }
 
-    // 3. Generate SVG
     const svgParams = {
       theme: config.theme || 'dark',
       bg_color: config.customColors?.bg,
@@ -83,16 +74,12 @@ export async function POST(request: NextRequest) {
 
     const svgContent = generateStatsSVG(githubData, svgParams);
     
-    // Convert SVG to base64 data URL (Edge compatible method)
-    // Buffer n'est pas recommandé en Edge, on utilise btoa standard
     const base64 = btoa(unescape(encodeURIComponent(svgContent)));
     const svgDataUrl = `data:image/svg+xml;base64,${base64}`;
 
-    // Generate markdown snippet for display
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://github-stats.yourdomain.dev';
     const statsParam = config.stats?.join(',') || 'commits,repos,langs';
     
-    // Construction propre de l'URL pour le snippet
     const queryParams = new URLSearchParams({
       user: user,
       theme: config.theme || 'dark',

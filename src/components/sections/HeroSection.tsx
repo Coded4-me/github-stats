@@ -42,7 +42,6 @@ export default function HeroSection() {
                 The perfect way to showcase your open-source contributions.
             </p>
 
-            {/* Stats Counters */}
             <div className="flex flex-wrap justify-center gap-6 mb-12">
                 <HeroStat icon={<Github className="w-5 h-5" />} value="100%" label="Open Source" color="text-white" />
                 <HeroStat icon={<GitFork className="w-5 h-5" />} value="1M+" label="Generated" color="text-[#8b949e]" />

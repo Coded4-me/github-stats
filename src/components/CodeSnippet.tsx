@@ -19,11 +19,9 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://github-stats.yourdomain.dev';
   const statsParam = config.stats.join(',');
   
-  // Construction des URLs
   const imageUrl = `${baseUrl}/api/stats?user=${username}&theme=${config.theme}&stats=${statsParam}${config.showUsername ? '' : '&hide_username=true'}`;
   const fullUrl = `${imageUrl}${config.customization.borderRadius !== 10 ? `&border_radius=${config.customization.borderRadius}` : ''}${config.customization.hideBorder ? '&hide_border=true' : ''}`;
   
-  // Contenus à copier
   const markdown = `![GitHub Stats](${fullUrl})`;
   const htmlEmbed = `<img src="${fullUrl}" alt="GitHub Stats" />`;
 
@@ -35,7 +33,6 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
 
   return (
     <div className="p-6 space-y-6 w-full">
-      {/* Markdown */}
       <div className="w-full">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-gray-300">Markdown (Recommended)</h3>
@@ -48,10 +45,6 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
           </button>
         </div>
         
-        {/* CORRECTION: whitespace-pre-wrap break-all 
-          Ces classes forcent le texte à passer à la ligne même si c'est une URL continue,
-          empêchant ainsi le bloc de dépasser la largeur du conteneur parent.
-        */}
         <pre className="bg-[#0d1117] p-4 rounded-lg text-xs text-[#8b949e] border border-[#30363d] w-full whitespace-pre-wrap break-all font-mono">
           {markdown}
         </pre>
@@ -60,7 +53,6 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
         </p>
       </div>
 
-      {/* HTML */}
       <div className="w-full">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-gray-300">HTML Embed</h3>
@@ -77,7 +69,6 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
         </pre>
       </div>
 
-      {/* Direct URL */}
       <div className="w-full">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-gray-300">Direct URL</h3>
@@ -94,7 +85,6 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
         </pre>
       </div>
 
-      {/* Usage Tips */}
       <div className="bg-[#58a6ff]/10 border border-[#58a6ff]/20 rounded-lg p-4 w-full">
         <h4 className="text-sm font-semibold text-[#58a6ff] mb-2">Usage Tips</h4>
         <ul className="text-xs text-[#8b949e] space-y-1.5">

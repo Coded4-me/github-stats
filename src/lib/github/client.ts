@@ -116,13 +116,10 @@ export async function fetchGitHubStats(
     const user = response.user;
     if (!user) return null;
 
-    // Calculate total stars
     const totalStars = user.repositories.nodes.reduce(
       (sum: number, repo: any) => sum + repo.stargazerCount,
       0
     );
-
-    // Calculate language statistics
     const languageStats = new Map<string, { size: number; color: string }>();
     
     if (includeLanguages) {
@@ -153,7 +150,6 @@ export async function fetchGitHubStats(
       .sort((a, b) => b.size - a.size)
       .slice(0, languageCount);
 
-    // Calculate contribution streak
     const contributionStreak = calculateStreak(
       user.contributionsCollection.contributionCalendar.weeks
     );
@@ -193,7 +189,6 @@ function calculateStreak(weeks: any[]): number {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Flatten all days
   const allDays = weeks.flatMap(week => week.contributionDays).reverse();
 
   for (const day of allDays) {

@@ -10,13 +10,12 @@ import { getCachedData, setCachedData } from '@/lib/cache';
 import { validateStatsParams } from '@/lib/utils/validators';
 import { rateLimiter } from '@/lib/utils/rate-limiter';
 
-export const runtime = 'edge'; // Use Edge Runtime for better performance
+export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
   const startTime = Date.now();
 
   try {
-    // Extract query parameters
     const searchParams = request.nextUrl.searchParams;
     const params = {
       user: searchParams.get('user') || '',
@@ -33,7 +32,6 @@ export async function GET(request: NextRequest) {
       cache_seconds: parseInt(searchParams.get('cache') || '1800'),
     };
 
-    // Validate parameters
     const validation = validateStatsParams(params);
     if (!validation.success) {
       return new NextResponse(
@@ -45,7 +43,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Rate limiting (IP-based)
     const clientIP = request.headers.get('x-forwarded-for') ||
       request.headers.get('x-real-ip') ||
       'unknown';
@@ -66,14 +63,11 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Generate cache key
     const cacheKey = `stats:${params.user}:${JSON.stringify(params)}`;
 
-    // Try to get from cache
     let svgContent = await getCachedData(cacheKey);
 
     if (!svgContent) {
-      // Fetch data from GitHub API
       const githubData = await fetchGitHubStats(params.user, {
         includeLanguages: params.stats.includes('langs'),
         languageCount: params.langs_count
@@ -89,16 +83,13 @@ export async function GET(request: NextRequest) {
         );
       }
 
-      // Generate SVG
       svgContent = generateStatsSVG(githubData, params);
 
-      // Cache the result
       await setCachedData(cacheKey, svgContent, params.cache_seconds);
     }
 
     const responseTime = Date.now() - startTime;
 
-    // Return SVG with proper headers
     return new NextResponse(svgContent, {
       status: 200,
       headers: {

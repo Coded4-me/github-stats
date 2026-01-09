@@ -54,15 +54,9 @@ export default function StatsConfigurator() {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 pb-16">
-      {/* CORRECTION: lg:grid-cols-[400px,minmax(0,1fr)] 
-        Le minmax(0, 1fr) est crucial pour empêcher le contenu (comme les blocs de code)
-        de forcer l'élargissement de la colonne au-delà de la largeur de l'écran.
-      */}
       <div className="grid lg:grid-cols-[400px,minmax(0,1fr)] gap-8 items-start">
         
-        {/* Left Panel - Configuration */}
         <div className="space-y-6 w-full">
-          {/* Username Input */}
           <div className="bg-[#161b22] rounded-xl p-6 border border-[#30363d]">
             <label className="flex items-center gap-2 text-sm font-semibold mb-3 text-gray-300">
               <Github className="w-4 h-4" />
@@ -80,7 +74,6 @@ export default function StatsConfigurator() {
             </p>
           </div>
 
-          {/* Stats Selection */}
           <div className="bg-[#161b22] rounded-xl p-6 border border-[#30363d]">
             <h3 className="flex items-center gap-2 text-sm font-semibold mb-4 text-gray-300">
               <Settings className="w-4 h-4" />
@@ -118,7 +111,6 @@ export default function StatsConfigurator() {
             </div>
           </div>
 
-          {/* Theme Selection */}
           <div className="bg-[#161b22] rounded-xl p-6 border border-[#30363d]">
             <h3 className="flex items-center gap-2 text-sm font-semibold mb-4 text-gray-300">
               <Palette className="w-4 h-4" />
@@ -141,7 +133,6 @@ export default function StatsConfigurator() {
             </div>
           </div>
 
-          {/* Advanced Customization */}
           <div className="bg-[#161b22] rounded-xl p-6 border border-[#30363d]">
             <h3 className="text-sm font-semibold mb-4 text-gray-300">
               Advanced Options
@@ -174,10 +165,7 @@ export default function StatsConfigurator() {
           </div>
         </div>
 
-        {/* Right Panel - Preview & Code */}
-        {/* CORRECTION: w-full pour s'assurer qu'il prend toute la largeur disponible de la grille */}
         <div className="space-y-6 w-full min-w-0">
-          {/* Tab Selector */}
           <div className="flex gap-2 bg-[#161b22] p-2 rounded-lg border border-[#30363d]">
             <button
               onClick={() => setActiveTab('preview')}
@@ -203,7 +191,6 @@ export default function StatsConfigurator() {
             </button>
           </div>
 
-          {/* Content */}
           <div className="bg-[#161b22] rounded-xl border border-[#30363d] overflow-hidden w-full">
             <div className={activeTab === 'preview' ? 'block' : 'hidden'}>
               <StatsPreview username={username} config={config} />

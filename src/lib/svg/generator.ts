@@ -28,7 +28,6 @@ interface StatConfig {
 export function generateStatsSVG(data: GitHubStats, params: SVGParams): string {
   const theme = getTheme(params);
   
-  // Sécurité : fallback si stats est vide
   const statsStr = params.stats || "commits,repos,prs,issues,stars";
   const statsToShow = statsStr.split(',').filter(Boolean);
   const showLanguages = statsToShow.includes('langs');
@@ -44,10 +43,9 @@ export function generateStatsSVG(data: GitHubStats, params: SVGParams): string {
 
   const displayStats = statConfigs.filter(stat => statsToShow.includes(stat.id));
   
-  // Layout constants
   const CARD_PADDING = 20;
   const HEADER_HEIGHT = 90;
-  const STAT_ROW_HEIGHT = 65; // Plus d'espace vertical
+  const STAT_ROW_HEIGHT = 65; 
   const LANG_SECTION_HEIGHT = 200;
   
   const height = calculateHeight(displayStats.length, showLanguages, HEADER_HEIGHT, STAT_ROW_HEIGHT, LANG_SECTION_HEIGHT);
@@ -106,9 +104,8 @@ function renderStatsGrid(stats: StatConfig[], theme: Theme, startY: number): str
     const col = index % 2;
     const row = Math.floor(index / 2);
     
-    // Grid calculation
     const gap = 15;
-    const width = 212; // (480 - 2*20 - 15) / 2
+    const width = 212; 
     const height = 50;
     
     const x = 20 + col * (width + gap);
@@ -135,7 +132,6 @@ function renderStatsGrid(stats: StatConfig[], theme: Theme, startY: number): str
 }
 
 function renderLanguages(languages: any[], theme: Theme, statsCount: number, headerH: number, rowH: number): string {
-  // Calcul dynamique de la position Y
   const rows = Math.ceil(statsCount / 2);
   const gap = 15;
   const startY = headerH + (rows * (50 + gap)) + 15;
@@ -146,9 +142,6 @@ function renderLanguages(languages: any[], theme: Theme, statsCount: number, hea
     
     ${languages.slice(0, 5).map((lang, index) => {
       const yPos = 35 + (index * 28);
-      // Correction des largeurs pour éviter le chevauchement
-      // Barre : commence à 100, largeur max 250 (finit à 350)
-      // Texte : aligné à droite à 400 (laisse 50px de marge visuelle)
       return `
       <g transform="translate(0, ${yPos})">
         <text x="0" y="0" class="lang-label" dominant-baseline="middle">${escapeXml(lang.name)}</text>
@@ -168,12 +161,12 @@ function renderLanguages(languages: any[], theme: Theme, statsCount: number, hea
 function calculateHeight(statsCount: number, showLanguages: boolean, headerH: number, rowH: number, langH: number): number {
   const rows = Math.ceil(statsCount / 2);
   const gap = 15;
-  let height = headerH + (rows * (50 + gap)); // 50 = stat card height
+  let height = headerH + (rows * (50 + gap)); 
   
   if (showLanguages) {
     height += langH;
   } else {
-    height += 20; // Bottom padding if no langs
+    height += 20;
   }
   
   return height;
@@ -194,7 +187,7 @@ function getTheme(params: SVGParams): Theme {
 function formatNumber(num: number): string {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Ajoute les virgules (1,000)
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function escapeXml(unsafe: any): string {

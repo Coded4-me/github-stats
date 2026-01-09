@@ -58,7 +58,6 @@ export default function StatsPreview({ username, config }: PreviewProps) {
           setLoading(false);
         }
       } else if (lastFetchedData) {
-        // Generate the SVG locally without making an API call
         const githubData = {
           user: {
             name: lastFetchedData.data.name || username,
@@ -143,7 +142,6 @@ export default function StatsPreview({ username, config }: PreviewProps) {
 
         {!loading && !error && svgUrl && (
           <div className="w-full flex flex-col items-center">
-            {/* CORRECTION: max-w-full assure que le SVG ne dépasse jamais son conteneur */}
             <img 
               src={svgUrl} 
               alt="GitHub Stats" 

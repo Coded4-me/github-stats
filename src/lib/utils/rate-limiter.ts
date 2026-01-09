@@ -19,7 +19,6 @@ class RateLimiter {
     this.max = max;
     this.windowMs = windowMs;
 
-    // Cleanup old entries every minute
     setInterval(() => this.cleanup(), 60000);
   }
 
@@ -66,4 +65,4 @@ class RateLimiter {
   }
 }
 
-export const rateLimiter = new RateLimiter(60, 60000); // 60 requests per minute
+export const rateLimiter = new RateLimiter(60, 60000);

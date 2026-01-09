@@ -12,11 +12,9 @@ if (!globalForCache.localCache) {
   console.log('⚡ [CACHE] Initialized new In-Memory Cache Map');
 }
 
-// Vérification stricte : il faut une URL ET un Token pour utiliser Redis
 const isRedisConfigured = !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN && process.env.KV_REST_API_URL !== "";
 
 export async function getCachedData(key: string): Promise<string | null> {
-  // CAS 1: Redis
   if (isRedisConfigured) {
     try {
       const data = await kv.get<string>(key);
@@ -28,7 +26,6 @@ export async function getCachedData(key: string): Promise<string | null> {
     }
   }
 
-  // CAS 2: Local Memory
   const item = globalForCache.localCache.get(key);
   
   if (!item) {
