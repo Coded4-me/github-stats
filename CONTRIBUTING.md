@@ -3,9 +3,9 @@
 <!-- Contribution guidelines -->
 <!-- ============================================================================ -->
 
-# Contributing to GitHub Stats Generator
+# Contributing to GitHub Stats
 
-First off, thank you for considering contributing to GitHub Stats Generator! 🎉
+First off, thank you for considering contributing to GitHub Stats! 🎉
 
 ## Code of Conduct
 
@@ -44,7 +44,7 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/github-stats-generator.git
+git clone https://github.com/your-username/github-stats.git
 
 # Install dependencies
 npm install
