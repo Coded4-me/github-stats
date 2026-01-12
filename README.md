@@ -3,7 +3,7 @@
 <!-- Project documentation -->
 <!-- ============================================================================ -->
 
-# 🚀 GitHub Stats Generator
+# GitHub Stats, Coded 4 Me
 
 Beautiful, customizable GitHub statistics cards for your README.md. Free, open-source, and easy to use.
 
@@ -11,20 +11,19 @@ Beautiful, customizable GitHub statistics cards for your README.md. Free, open-s
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 
-## ✨ Features
+## Features
 
-- 🎨 **6 Beautiful Themes** - Dark, Light, Dracula, Monokai, Nord, Gruvbox
-- 📊 **Customizable Stats** - Choose what to display
-- 🚀 **Lightning Fast** - Edge functions + aggressive caching
-- 🔒 **Privacy First** - No data collection, no tracking
-- ♿ **Accessible** - Semantic HTML, proper contrast ratios
-- 🌍 **Free Forever** - Open source, MIT licensed
+- **6 Beautiful Themes** - Dark, Light, Dracula, Monokai, Nord, Gruvbox
+- **Customizable Stats** - Choose what to display
+- **Lightning Fast** - Edge functions + aggressive caching
+- **Privacy First** - No data collection, no tracking
+- **Accessible** - Semantic HTML, proper contrast ratios
 
-## 🎯 Quick Start
+## Quick Start
 
 ### Using the Web Interface
 
-1. Go to [https://github-stats.yourdomain.dev](https://github-stats.yourdomain.dev)
+1. Go to [https://github-stats.coded4.me](https://github-stats.coded4.me)
 2. Enter your GitHub username
 3. Customize your card
 4. Copy the Markdown code
@@ -33,10 +32,10 @@ Beautiful, customizable GitHub statistics cards for your README.md. Free, open-s
 ### Direct URL
 
 ```markdown
-![GitHub Stats](https://github-stats.yourdomain.dev/api/stats?user=YOUR_USERNAME&theme=dark&stats=commits,repos,langs)
+![GitHub Stats](https://github-stats.coded4.me/api/stats?user=YOUR_USERNAME&theme=dark&stats=commits,repos,langs)
 ```
 
-## 🛠️ Installation (Self-Hosting)
+## Installation (Self-Hosting)
 
 ### Prerequisites
 
@@ -47,9 +46,9 @@ Beautiful, customizable GitHub statistics cards for your README.md. Free, open-s
 ### Steps
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/github-stats-generator.git
-cd github-stats-generator
+# Clone your fork
+git clone https://github.com/yourusername/github-stats.git
+cd github-stats
 
 # Install dependencies
 npm install
@@ -68,7 +67,7 @@ npm start
 
 ### Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/github-stats-generator)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/github-stats)
 
 1. Click the button above
 2. Add `GITHUB_TOKEN` environment variable
@@ -122,23 +121,23 @@ GET /api/stats
 
 ### Default Dark Theme
 ```markdown
-![GitHub Stats](https://github-stats.yourdomain.dev/api/stats?user=octocat&theme=dark)
+![GitHub Stats](https://github-stats.coded4.me/api/stats?user=octocat&theme=dark)
 ```
 
 ### Custom Colors
 ```markdown
-![GitHub Stats](https://github-stats.yourdomain.dev/api/stats?user=octocat&theme=dark&bg_color=1a1b27&title_color=58a6ff)
+![GitHub Stats](https://github-stats.coded4.me/api/stats?user=octocat&theme=dark&bg_color=1a1b27&title_color=58a6ff)
 ```
 
 ### Compact Layout
 ```markdown
-![GitHub Stats](https://github-stats.yourdomain.dev/api/stats?user=octocat&layout=compact&stats=commits,repos,stars)
+![GitHub Stats](https://github-stats.coded4.me/api/stats?user=octocat&layout=compact&stats=commits,repos,stars)
 ```
 
 ## 🏗️ Project Structure
 
 ```
-github-stats-generator/
+github-stats/
 ├── src/
 │   ├── app/
 │   │   ├── api/
@@ -185,11 +184,6 @@ npm run test
 npm run type-check
 ```
 
-### Code Formatting
-```bash
-npm run format
-```
-
 ### Linting
 ```bash
 npm run lint
@@ -213,13 +207,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Inspired by [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 - Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)
-- Icons by [Lucide](https://lucide.dev/)
+- Icons by [Lucide](https://lucide.dev/) and [Octicons](https://octicons.github.com/)
 
 ## 📧 Contact
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Twitter: [@yourusername](https://twitter.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@Coded4-me](https://github.com/Coded4-me)
+- Email: contact@coded4.me
 
 ---
 
