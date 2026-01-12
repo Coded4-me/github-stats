@@ -27,11 +27,11 @@ interface StatConfig {
 
 export function generateStatsSVG(data: GitHubStats, params: SVGParams): string {
   const theme = getTheme(params);
-  
+
   const statsStr = params.stats || "commits,repos,prs,issues,stars";
   const statsToShow = statsStr.split(',').filter(Boolean);
   const showLanguages = statsToShow.includes('langs');
-  
+
   const statConfigs: StatConfig[] = [
     { id: 'commits', label: 'Commits', icon: 'commits', value: data.totalCommits },
     { id: 'repos', label: 'Repositories', icon: 'repos', value: data.totalRepos },
@@ -42,12 +42,12 @@ export function generateStatsSVG(data: GitHubStats, params: SVGParams): string {
   ];
 
   const displayStats = statConfigs.filter(stat => statsToShow.includes(stat.id));
-  
+
   const CARD_PADDING = 20;
   const HEADER_HEIGHT = 90;
-  const STAT_ROW_HEIGHT = 65; 
+  const STAT_ROW_HEIGHT = 65;
   const LANG_SECTION_HEIGHT = 200;
-  
+
   const height = calculateHeight(displayStats.length, showLanguages, HEADER_HEIGHT, STAT_ROW_HEIGHT, LANG_SECTION_HEIGHT);
   const borderStyle = params.hide_border ? '' : `stroke="${theme.border}" stroke-width="1" stroke-opacity="0.5"`;
 
@@ -103,11 +103,11 @@ function renderStatsGrid(stats: StatConfig[], theme: Theme, startY: number): str
   return stats.map((stat, index) => {
     const col = index % 2;
     const row = Math.floor(index / 2);
-    
+
     const gap = 15;
-    const width = 212; 
+    const width = 212;
     const height = 50;
-    
+
     const x = 20 + col * (width + gap);
     const y = startY + row * (height + gap);
 
@@ -135,14 +135,14 @@ function renderLanguages(languages: any[], theme: Theme, statsCount: number, hea
   const rows = Math.ceil(statsCount / 2);
   const gap = 15;
   const startY = headerH + (rows * (50 + gap)) + 15;
-  
+
   return `
   <g transform="translate(20, ${startY})">
     <text x="0" y="0" class="title" style="font-size: 16px;">Top Languages</text>
     
     ${languages.slice(0, 5).map((lang, index) => {
-      const yPos = 35 + (index * 28);
-      return `
+    const yPos = 35 + (index * 28);
+    return `
       <g transform="translate(0, ${yPos})">
         <text x="0" y="0" class="lang-label" dominant-baseline="middle">${escapeXml(lang.name)}</text>
         
@@ -154,25 +154,11 @@ function renderLanguages(languages: any[], theme: Theme, statsCount: number, hea
           ${lang.percentage.toFixed(1)}%
         </text>
       </g>`;
-    }).join('')}
+  }).join('')}
   </g>`;
 }
 
-function calculateHeight(statsCount: number, showLanguages: boolean, headerH: number, rowH: number, langH: number): number {
-  const rows = Math.ceil(statsCount / 2);
-  const gap = 15;
-  let height = headerH + (rows * (50 + gap)); 
-  
-  if (showLanguages) {
-    height += langH;
-  } else {
-    height += 20;
-  }
-  
-  return height;
-}
-
-function getTheme(params: SVGParams): Theme {
+export function getTheme(params: SVGParams): Theme {
   const baseTheme = themes[params.theme] || themes.dark;
   return {
     bg: params.bg_color || baseTheme.bg,
@@ -184,13 +170,13 @@ function getTheme(params: SVGParams): Theme {
   };
 }
 
-function formatNumber(num: number): string {
+export function formatNumber(num: number): string {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function escapeXml(unsafe: any): string {
+export function escapeXml(unsafe: any): string {
   if (unsafe === null || unsafe === undefined) return '';
   return String(unsafe)
     .replace(/&/g, '&amp;')
@@ -200,9 +186,23 @@ function escapeXml(unsafe: any): string {
     .replace(/'/g, '&apos;');
 }
 
+export function calculateHeight(statsCount: number, showLanguages: boolean, headerH: number, rowH: number, langH: number): number {
+  const rows = Math.ceil(statsCount / 2);
+  const gap = 15;
+  let height = headerH + (rows * (50 + gap));
+
+  if (showLanguages) {
+    height += langH;
+  } else {
+    height += 20;
+  }
+
+  return height;
+}
+
 function getIconDefs(stats: StatConfig[], theme: Theme): string {
   const uniqueIcons = Array.from(new Set(stats.map(s => s.icon)));
-  return uniqueIcons.map(iconName => 
+  return uniqueIcons.map(iconName =>
     generateIconSymbol(iconName, iconName, theme.icon)
   ).join('');
 }
