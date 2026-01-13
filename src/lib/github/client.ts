@@ -39,7 +39,7 @@ export async function fetchGitHubStats(
   options: { includeLanguages?: boolean; languageCount?: number } = {}
 ): Promise<GitHubStats | null> {
   const { includeLanguages = true, languageCount = 5 } = options;
-  
+
   try {
     console.log(`Fetching GitHub stats for user: ${username}`);
 
@@ -121,7 +121,7 @@ export async function fetchGitHubStats(
       0
     );
     const languageStats = new Map<string, { size: number; color: string }>();
-    
+
     if (includeLanguages) {
       user.repositories.nodes.forEach((repo: any) => {
         repo.languages.edges.forEach((edge: any) => {
@@ -162,7 +162,7 @@ export async function fetchGitHubStats(
         createdAt: user.createdAt
       },
       totalCommits: user.contributionsCollection.totalCommitContributions +
-                    user.contributionsCollection.restrictedContributionsCount,
+        user.contributionsCollection.restrictedContributionsCount,
       totalRepos: user.repositories.totalCount,
       totalPRs: user.pullRequests.totalCount,
       totalIssues: user.issues.totalCount,
@@ -175,12 +175,35 @@ export async function fetchGitHubStats(
 
   } catch (error: any) {
     console.error('GitHub API Error:', error);
-    
+
+
     if (error.message?.includes('NOT_FOUND')) {
       return null;
     }
-    
+
     throw error;
+  }
+}
+
+export async function fetchRepoStars(owner: string, repo: string): Promise<number | null> {
+  try {
+    const query = `
+      query GetRepoStars($owner: String!, $repo: String!) {
+        repository(owner: $owner, name: $repo) {
+          stargazerCount
+        }
+      }
+    `;
+
+    const response: any = await githubClient(query, {
+      owner,
+      repo,
+    });
+
+    return response.repository?.stargazerCount ?? 0;
+  } catch (error) {
+    console.warn(`Failed to fetch stars for ${owner}/${repo}:`, error);
+    return null;
   }
 }
 
@@ -193,9 +216,9 @@ function calculateStreak(weeks: any[]): number {
 
   for (const day of allDays) {
     const dayDate = new Date(day.date);
-    
+
     if (dayDate > today) continue;
-    
+
     if (day.contributionCount > 0) {
       currentStreak++;
     } else if (currentStreak > 0) {
