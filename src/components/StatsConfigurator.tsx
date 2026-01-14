@@ -175,7 +175,7 @@ export default function StatsConfigurator() {
               Custom Colors
             </h3>
             <p className="text-xs text-gray-500 mb-4">Override theme colors with custom hex values</p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               <div>
                 <label className="text-xs text-gray-400 mb-1 block">Background</label>
                 <div className="flex gap-2">
