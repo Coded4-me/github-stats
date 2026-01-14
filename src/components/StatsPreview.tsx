@@ -84,6 +84,7 @@ export default function StatsPreview({ username, config }: PreviewProps) {
           title_color: config.customColors?.title,
           border_radius: config.customization?.borderRadius ?? 10,
           hide_border: config.customization?.hideBorder ?? false,
+          hide_username: config.showUsername === false,
           layout: config.layout || 'default',
           stats: config.stats?.join(',') || 'commits,repos,langs',
         };
@@ -142,10 +143,10 @@ export default function StatsPreview({ username, config }: PreviewProps) {
 
         {!loading && !error && svgUrl && (
           <div className="w-full flex flex-col items-center">
-            <img 
-              src={svgUrl} 
-              alt="GitHub Stats" 
-              className="w-full h-auto max-w-full rounded shadow-sm" 
+            <img
+              src={svgUrl}
+              alt="GitHub Stats"
+              className="w-full h-auto max-w-full rounded shadow-sm"
             />
           </div>
         )}

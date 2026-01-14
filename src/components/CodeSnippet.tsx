@@ -18,10 +18,24 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://github-stats.yourdomain.dev';
   const statsParam = config.stats.join(',');
-  
-  const imageUrl = `${baseUrl}/api/stats?user=${username}&theme=${config.theme}&stats=${statsParam}${config.showUsername ? '' : '&hide_username=true'}`;
-  const fullUrl = `${imageUrl}${config.customization.borderRadius !== 10 ? `&border_radius=${config.customization.borderRadius}` : ''}${config.customization.hideBorder ? '&hide_border=true' : ''}`;
-  
+
+  const baseParams = `user=${username}&theme=${config.theme}&stats=${statsParam}`;
+
+  const optionalParams = [
+    config.layout !== 'default' ? `layout=${config.layout}` : '',
+    !config.showUsername ? 'hide_username=true' : '',
+    config.customization?.borderRadius !== 10 ? `border_radius=${config.customization?.borderRadius}` : '',
+    config.customization?.hideBorder ? 'hide_border=true' : '',
+    config.customColors?.bg ? `bg_color=${config.customColors.bg.replace('#', '')}` : '',
+    config.customColors?.text ? `text_color=${config.customColors.text.replace('#', '')}` : '',
+    config.customColors?.title ? `title_color=${config.customColors.title.replace('#', '')}` : '',
+    config.customColors?.icon ? `icon_color=${config.customColors.icon.replace('#', '')}` : '',
+  ].filter(Boolean).join('&');
+
+  const fullUrl = optionalParams
+    ? `${baseUrl}/api/stats?${baseParams}&${optionalParams}`
+    : `${baseUrl}/api/stats?${baseParams}`;
+
   const markdown = `![GitHub Stats](${fullUrl})`;
   const htmlEmbed = `<img src="${fullUrl}" alt="GitHub Stats" />`;
 
@@ -44,7 +58,7 @@ export default function CodeSnippet({ username, config }: CodeSnippetProps) {
             {copied ? 'Copied!' : 'Copy'}
           </button>
         </div>
-        
+
         <pre className="bg-[#0d1117] p-4 rounded-lg text-xs text-[#8b949e] border border-[#30363d] w-full whitespace-pre-wrap break-all font-mono">
           {markdown}
         </pre>
