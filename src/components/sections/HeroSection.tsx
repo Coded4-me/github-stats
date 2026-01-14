@@ -10,7 +10,7 @@ import HeroStat from '@/components/ui/HeroStat';
 export default function HeroSection() {
     return (
         <section className="max-w-5xl mx-auto px-4 py-16 text-center">
-            <a
+            {/* <a
                 href="https://github.com/yourusername/github-stats-generator/releases"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export default function HeroSection() {
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-            </a>
+            </a> */}
 
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white tracking-tight">
                 GitHub Stats, <br />
