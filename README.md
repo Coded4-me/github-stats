@@ -73,7 +73,7 @@ npm start
 2. Add `GITHUB_TOKEN` environment variable
 3. Deploy!
 
-## 📖 API Documentation
+## API Documentation
 
 ### Endpoint
 
@@ -117,7 +117,7 @@ GET /api/stats
 - `nord` - Nord theme
 - `gruvbox` - Gruvbox theme
 
-## 🎨 Examples
+## Examples
 
 ### Default Dark Theme
 ```markdown
@@ -134,7 +134,7 @@ GET /api/stats
 ![GitHub Stats](https://github-stats.coded4.me/api/stats?user=octocat&layout=compact&stats=commits,repos,stars)
 ```
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 github-stats/
@@ -172,7 +172,7 @@ github-stats/
 └── README.md                       # This file
 ```
 
-## 🔧 Development
+## Development
 
 ### Running Tests
 ```bash
@@ -189,7 +189,7 @@ npm run type-check
 npm run lint
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
 
@@ -199,21 +199,21 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Inspired by [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 - Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)
 - Icons by [Lucide](https://lucide.dev/) and [Octicons](https://octicons.github.com/)
 
-## 📧 Contact
+## Contact
 
 - GitHub: [@Coded4-me](https://github.com/Coded4-me)
 - Email: contact@coded4.me
 
 ---
 
-**Made with ❤️ by the open-source community**
+**Made with ❤️ by the [Coded4](https://coded4.me) team**
