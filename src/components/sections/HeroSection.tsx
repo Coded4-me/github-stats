@@ -10,27 +10,27 @@ import HeroStat from '@/components/ui/HeroStat';
 export default function HeroSection() {
     return (
         <section className="max-w-5xl mx-auto px-4 py-16 text-center">
-            {/* <a
-                href="https://github.com/yourusername/github-stats-generator/releases"
+            <a
+                href="https://github.com/Coded4-me/github-stats/releases"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-blue-500/30 bg-[#0d1117] hover:bg-[#161b22] hover:border-blue-400/50 transition-all duration-300 shadow-[0_0_10px_rgba(56,139,253,0.15)] hover:shadow-[0_0_15px_rgba(56,139,253,0.25)]"
+                className="group inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-[#7ee787]/30 bg-[#0d1117] hover:bg-[#161b22] hover:border-[#7ee787]/50 transition-all duration-300 shadow-[0_0_10px_rgba(56,139,253,0.15)] hover:shadow-[0_0_15px_rgba(56,139,253,0.25)]"
             >
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#1f6feb] text-white shadow-sm">
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#7ee787] text-black shadow-sm">
                     NEW
                 </span>
                 <span className="text-xs font-medium text-[#8b949e] group-hover:text-[#c9d1d9] transition-colors">
-                    v2.0 Now Available
+                    v1.0 now available
                 </span>
                 <svg
-                    className="w-3 h-3 text-[#8b949e] group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all transform"
+                    className="w-3 h-3 text-[#8b949e] group-hover:text-[#7ee787] group-hover:translate-x-0.5 transition-all transform"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-            </a> */}
+            </a>
 
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white tracking-tight">
                 GitHub Stats, <br />
@@ -45,7 +45,7 @@ export default function HeroSection() {
             <div className="flex flex-wrap justify-center gap-6 mb-12">
                 <HeroStat icon={<Github className="w-5 h-5" />} value="100%" label="Open Source" color="text-white" />
                 <HeroStat icon={<GitFork className="w-5 h-5" />} value="1M+" label="Generated" color="text-[#8b949e]" />
-                <HeroStat icon={<Heart className="w-5 h-5" />} value="Free" label="Forever" color="text-[#f78166]" />
+                <HeroStat icon={<Heart className="w-5 h-5" />} value="Free" label="" color="text-[#f78166]" />
             </div>
         </section>
     );
