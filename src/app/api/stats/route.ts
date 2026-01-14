@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
       title_color: searchParams.get('title_color') ?? undefined,
       border_radius: parseInt(searchParams.get('border_radius') || '10'),
       hide_border: searchParams.get('hide_border') === 'true',
+      hide_username: searchParams.get('hide_username') === 'true',
       layout: searchParams.get('layout') || 'default',
       langs_count: parseInt(searchParams.get('langs_count') || '5'),
       cache_seconds: parseInt(searchParams.get('cache') || '1800'),
