@@ -28,10 +28,10 @@ export default function Footer() {
                 </div>
 
                 <div className="flex gap-6">
-                    <FooterLink href="#">Privacy</FooterLink>
+                    {/* <FooterLink href="#">Privacy</FooterLink>
                     <FooterLink href="#">Terms</FooterLink>
-                    <FooterLink href="#">API</FooterLink>
-                    <FooterLink href="https://github.com/yourusername/github-stats-generator">Source</FooterLink>
+                    <FooterLink href="#">API</FooterLink> */}
+                    <FooterLink href="https://github.com/Coded4-me/github-stats">Source</FooterLink>
                 </div>
             </div>
         </footer>
