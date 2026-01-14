@@ -314,7 +314,7 @@ export default function StatsConfigurator() {
             <button
               onClick={() => setActiveTab('code')}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition ${activeTab === 'code'
-                ? 'bg-[#1f6feb] text-white shadow-sm'
+                ? 'bg-[#238636] text-white shadow-sm'
                 : 'text-gray-400 hover:text-white hover:bg-[#21262d]'
                 }`}
             >
