@@ -8,7 +8,7 @@ import { Github, Star } from 'lucide-react';
 import { fetchRepoStars } from '@/lib/github/client';
 
 export default async function Header() {
-  const stars = await fetchRepoStars('MarquesThomasCoding', 'github-stats');
+  const stars = await fetchRepoStars('Coded4-me', 'github-stats');
   const starCount = stars !== null ? (stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars) : '0';
 
   return (
@@ -20,7 +20,7 @@ export default async function Header() {
         </div>
 
         <a
-          href="https://github.com/MarquesThomasCoding/github-stats"
+          href="https://github.com/Coded4-me/github-stats"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-2 bg-[#21262d] hover:bg-[#30363d] border border-[rgba(240,246,252,0.1)] hover:border-[#8b949e] px-3 py-1.5 rounded-md transition-all duration-200 text-sm font-medium text-[#c9d1d9]"
